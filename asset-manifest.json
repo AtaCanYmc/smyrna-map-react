@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/smyrna-map-react/static/css/main.ea3578dd.css",
-    "main.js": "/smyrna-map-react/static/js/main.164215c2.js",
+    "main.js": "/smyrna-map-react/static/js/main.71636ab1.js",
     "static/js/453.fb97d97d.chunk.js": "/smyrna-map-react/static/js/453.fb97d97d.chunk.js",
     "index.html": "/smyrna-map-react/index.html",
     "main.ea3578dd.css.map": "/smyrna-map-react/static/css/main.ea3578dd.css.map",
-    "main.164215c2.js.map": "/smyrna-map-react/static/js/main.164215c2.js.map",
+    "main.71636ab1.js.map": "/smyrna-map-react/static/js/main.71636ab1.js.map",
     "453.fb97d97d.chunk.js.map": "/smyrna-map-react/static/js/453.fb97d97d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ea3578dd.css",
-    "static/js/main.164215c2.js"
+    "static/js/main.71636ab1.js"
   ]
 }
