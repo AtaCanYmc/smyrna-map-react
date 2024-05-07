@@ -2,11 +2,13 @@ import {useEffect, useState} from "react";
 import {IzmirMap} from "../../components/map/IzmirMap";
 import L from "leaflet";
 import {TerminalLoading} from "../../components/loading-icon/terminalLoading/TerminalLoading";
+import {SimpleErrorPopup} from "../../components/simpleErrorPopup/SimpleErrorPopup";
 
 export const MuseumPageContent = () => {
     const [museums, setMuseums] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
 
     const museumCustomIcon = L.icon({
         iconUrl: require('../../icons/museum.png'), // SVG simgesinin dosya yolu
@@ -35,7 +37,8 @@ export const MuseumPageContent = () => {
             setLoading(false);
         } catch (error) {
             if(error.message) {
-                setError(error.message);
+                setError(true);
+                setErrorMessage(error.message);
             }
             setLoading(false);
         }
@@ -49,6 +52,11 @@ export const MuseumPageContent = () => {
         <>
             <h2> Müzeler </h2>
             <TerminalLoading isOpen={loading} />
+            <SimpleErrorPopup isPopupOpen={error}
+                              onClose={() => setError(false)}
+                              messageText={errorMessage}
+                              buttonText={"OK"}
+            />
             <IzmirMap markers={museums} icon={museumCustomIcon}/>
         </>
     );
