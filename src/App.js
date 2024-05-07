@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Layout } from 'antd';
+import {IzmirNavbar} from "./components/navbar/IzmirNavbar";
+import {HomePageContent} from "./pages/home/HomePageContent";
+import {MuseumPageContent} from "./pages/museum/MuseumPageContent";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const { Header, Content } = Layout;
+
+const Settings = () => <h2>Settings Page</h2>;
+
+const App = () => {
+    return (
+        <Router>
+            <Layout>
+                <Header>
+                    <IzmirNavbar />
+                </Header>
+                <Content style={{ padding: '20px' }}>
+                    <Routes>
+                        <Route path="/" element={<HomePageContent />} />
+                        <Route path="/museum" element={<MuseumPageContent />} />
+                        <Route path="/settings" element={<Settings />} />
+                    </Routes>
+                </Content>
+            </Layout>
+        </Router>
+    );
+};
 
 export default App;
