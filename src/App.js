@@ -3,10 +3,9 @@ import { Layout } from 'antd';
 import {IzmirNavbar} from "./components/navbar/IzmirNavbar";
 import {HomePageContent} from "./pages/home/HomePageContent";
 import {MuseumPageContent} from "./pages/museum/MuseumPageContent";
+import {TrainStationPageContent} from "./pages/train/TrainStationPageContent";
 
 const { Header, Content } = Layout;
-
-const Settings = () => <h2>Settings Page</h2>;
 
 const App = () => {
     return (
@@ -19,7 +18,7 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<HomePageContent />} />
                         <Route path="/museum" element={<MuseumPageContent />} />
-                        <Route path="/settings" element={<Settings />} />
+                        <Route path="/train-stations" element={<TrainStationPageContent />} />
                     </Routes>
                 </Content>
             </Layout>
