@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import {GoogleMapsLink} from "../link/GoogleMapsLink";
 
 export const IzmirMap = (props) => {
     const { markers = [], icon= {} } = props;
@@ -46,6 +47,7 @@ export const IzmirMap = (props) => {
                     <Popup>
                         <h3>{marker.name}</h3>
                         <p>{marker.description}</p>
+                        <GoogleMapsLink enlem={marker.position[0]} boylam={marker.position[1]} />
                     </Popup>
                 </Marker>
             ))}
