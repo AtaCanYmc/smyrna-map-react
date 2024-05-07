@@ -16,6 +16,9 @@ export const IzmirNavbar = () => {
                 <Menu.Item key="Tren İstasyonları">
                     <Link to="/train-stations">Tren İstasyonları</Link>
                 </Menu.Item>
+                <Menu.Item key="Metro İstasyonları">
+                    <Link to="/metro-stations">Metro İstasyonları</Link>
+                </Menu.Item>
             </SubMenu>
             <SubMenu key="SubMenuKültür" icon={<CarOutlined />} title="Kültürel">
                 <Menu.Item key="Müzeler">

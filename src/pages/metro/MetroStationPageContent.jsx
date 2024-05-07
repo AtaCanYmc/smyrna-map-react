@@ -4,7 +4,7 @@ import L from "leaflet";
 import {TerminalLoading} from "../../components/loading-icon/terminalLoading/TerminalLoading";
 import {SimpleErrorPopup} from "../../components/simpleErrorPopup/SimpleErrorPopup";
 
-export const TrainStationPageContent = () => {
+export const MetroStationPageContent = () => {
     const [stations, setStations] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -20,17 +20,18 @@ export const TrainStationPageContent = () => {
     const fetchStations = async () => {
         try {
             setLoading(true);
-            const response = await fetch('https://openapi.izmir.bel.tr/api/ibb/cbs/trengarlari');
+            const response = await fetch('https://openapi.izmir.bel.tr/api/metro/istasyonlar');
             if (!response.ok) {
                 throw new Error(`API Hatası: ${response.status}`);
             }
             const data = await response.json();
-            const StationArr = data['onemliyer'].map((station, idx) => {
+            const StationArr = data.map((station, idx) => {
+                const aktiflik = station['AktifMi'] ? 'Aktif Durumda' : 'Pasif Durumda'
                 return {
                     id: idx,
-                    name: station['ADI'],
-                    position: [station['ENLEM'], station['BOYLAM']],
-                    description: station['ACIKLAMA']
+                    name: station['Adi'],
+                    position: [station['Enlem'], station['Boylam']],
+                    description: aktiflik
                 }
             })
             setStations(StationArr);
