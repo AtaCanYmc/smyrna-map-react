@@ -3,6 +3,7 @@ import {IzmirMap} from "../../components/map/IzmirMap";
 import L from "leaflet";
 import {TerminalLoading} from "../../components/loading-icon/terminalLoading/TerminalLoading";
 import {SimpleErrorPopup} from "../../components/simpleErrorPopup/SimpleErrorPopup";
+import {saveToOracle} from "../../utils";
 
 export const VapurStationPageContent = () => {
     const [stations, setStations] = useState([]);
@@ -36,6 +37,31 @@ export const VapurStationPageContent = () => {
                 }
             })
             setStations(StationArr);
+            await saveToOracle("https://apex.oracle.com/pls/apex/olympos_db/smyrna/vapur-iskele", data);
+            setLoading(false);
+        } catch (error) {
+            await fetchFromOracle("https://apex.oracle.com/pls/apex/olympos_db/smyrna/vapur-iskele");
+            setLoading(false);
+        }
+    };
+
+    const fetchFromOracle = async (getUrl) => {
+        try {
+            setLoading(true);
+            const response = await fetch(getUrl);
+            if (!response.ok) {
+                throw new Error(`API Hatası: ${response.status}`);
+            }
+            const data = await response.json();
+            const stationArr = data['items'].map((station, idx) => {
+                return {
+                    id: idx,
+                    name: station['adi'],
+                    position: [station['enlem'], station['boylam']],
+                    description: station['aktifmi'] + ' | ' + station['arabalivapuriskelesimi']
+                }
+            })
+            setStations(stationArr);
             setLoading(false);
         } catch (error) {
             if(error.message) {

@@ -3,6 +3,7 @@ import {IzmirMap} from "../../components/map/IzmirMap";
 import L from "leaflet";
 import {TerminalLoading} from "../../components/loading-icon/terminalLoading/TerminalLoading";
 import {SimpleErrorPopup} from "../../components/simpleErrorPopup/SimpleErrorPopup";
+import {saveToOracle} from "../../utils";
 
 export const MuseumPageContent = () => {
     const [museums, setMuseums] = useState([]);
@@ -34,6 +35,31 @@ export const MuseumPageContent = () => {
                 }
             })
             setMuseums(museumArr);
+            await saveToOracle("https://apex.oracle.com/pls/apex/olympos_db/smyrna/muze", data);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            await fetchFromOracle("https://apex.oracle.com/pls/apex/olympos_db/smyrna/muze");
+        }
+    };
+
+    const fetchFromOracle = async (getUrl) => {
+        try {
+            setLoading(true);
+            const response = await fetch(getUrl);
+            if (!response.ok) {
+                throw new Error(`API Hatası: ${response.status}`);
+            }
+            const data = await response.json();
+            const museumArr = data['items'].map((museum, idx) => {
+                return {
+                    id: idx,
+                    name: museum['adi'],
+                    position: [museum['enlem'], museum['boylam']],
+                    description: museum['aciklama']
+                }
+            })
+            setMuseums(museumArr);
             setLoading(false);
         } catch (error) {
             if(error.message) {
@@ -43,6 +69,8 @@ export const MuseumPageContent = () => {
             setLoading(false);
         }
     };
+
+
 
     useEffect(() => {
         fetchMuseums();
