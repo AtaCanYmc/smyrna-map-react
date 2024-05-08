@@ -17,7 +17,7 @@ export const IzmirNavbar = () => {
                     <Link to="/smyrna-map-react/train-stations">Tren İstasyonları</Link>
                 </Menu.Item>
                 <Menu.Item key="Metro İstasyonları">
-                    <Link to="/metro-stations">Metro İstasyonları</Link>
+                    <Link to="/smyrna-map-react/metro-stations">Metro İstasyonları</Link>
                 </Menu.Item>
                 <Menu.Item key="Vapur İskeleleri">
                     <Link to="/smyrna-map-react/vapur-stations">Vapur İskeleleri</Link>
