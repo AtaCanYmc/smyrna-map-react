@@ -51,7 +51,7 @@ export const MetroStationPageContent = () => {
 
     return (
         <>
-            <h2> Tren İstasyonları </h2>
+            <h2> Metro İstasyonları </h2>
             <TerminalLoading isOpen={loading} />
             <SimpleErrorPopup isPopupOpen={error}
                               onClose={() => setError(false)}

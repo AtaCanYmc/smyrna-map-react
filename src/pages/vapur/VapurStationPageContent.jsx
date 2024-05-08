@@ -52,7 +52,7 @@ export const VapurStationPageContent = () => {
 
     return (
         <>
-            <h2> Tren İstasyonları </h2>
+            <h2> Vapur İskeleleri </h2>
             <TerminalLoading isOpen={loading} />
             <SimpleErrorPopup isPopupOpen={error}
                               onClose={() => setError(false)}
